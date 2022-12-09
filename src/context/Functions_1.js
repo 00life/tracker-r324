@@ -1,8 +1,16 @@
 export function func_snackbar(reference, message) {
-  var x = reference.current.querySelector('#snackbar');
-  x.innerHTML = message;
-  x.className = "show";
-  setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  try{
+    var x = reference.current.querySelector('#snackbar');
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  }catch{setTimeout(()=>{
+    var x = reference.current.querySelector('#snackbar');
+    x.innerHTML = message;
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+  },50000)}
+  
 };
 
 export function func_savedata(data, name){
@@ -25,6 +33,7 @@ export function func_loaddata(element_get, putLocation){
   };
   reader.readAsText(file);
 };
+
 
 
 

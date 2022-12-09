@@ -1,21 +1,17 @@
 import React from 'react';
 import Layout from '../context/Layout';
-import { Link } from 'react-router-dom';
 
-
-function Home() {
-  
+function Barcode() {
   return (
     <Layout>
-      <data value='/'></data>
+      <data value='/barcode'></data>
       <div>
         test
         <input type='button' value='Test'/>
         <input type="text" />
-        <Link to='/request'>REQUEST</Link>
       </div>
     </Layout>
   )
 }
 
-export default Home
+export default Barcode

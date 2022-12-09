@@ -1,30 +1,28 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
 import InputBar from '../components/inputBar';
-import { useAuth } from '../context/AuthContext';
 import Layout from '../context/Layout';
+import {func_reset} from '../context/Functions_Auth';
+import { useAuth } from '../context/AuthContext';
 
-function Signup() {
-    const { func_signup, func_snackbar, reference } = useAuth();
-    const navigate = useNavigate();
+function Forgot() {
+    const { reference, func_snackbar } = useAuth();
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [confirm, setConfirm] = useState('');
 
-    const handleSubmit = async e =>{
+    const handleSubmit = e => {
         e.preventDefault();
-        try{
-            if(password === confirm){
-                await func_signup(email, password);
-                navigate('/');
-            }else{func_snackbar(reference,'Passwords do not match')}
-        }catch(error){console.log(error)}
-    }
+        func_reset(email);
+        func_snackbar(reference, 'Sent');
+    };
 
-  return (
+    return (
     <Layout>
-        <data value='/signup'></data>
+        <data value='/forgot'></data>
+        <div style={{display:'flex', justifyContent:'center', backgroundColor:'#ffffff', padding:'20px 0px', margin:'10px 20px', boxShadow:'1px 1px 4px 0px #8888', borderRadius:"5px",caretColor: "rgba(0,0,0,0)"}}>
+            {/* <img src={require("./../images/Railway_Statement1.png")} alt='' height="20px" width="max-width" /> */}
+            <center><h3>Your password will be emailed</h3></center>
+        </div>
+        
         <div style={{display:'flex', justifyContent:'center', backgroundColor:'#ffffff', padding:'20px 0px', margin:'10px 20px', boxShadow:'1px 1px 4px 0px #8888', borderRadius:"5px",caretColor: "rgba(0,0,0,0)"}}>
             <form onSubmit={e=>handleSubmit(e)}>
                 <table>
@@ -33,8 +31,6 @@ function Signup() {
                             <td>
                                 <div style={{padding:"10px"}}>
                                     <InputBar type={"email"} placeholder={"Email *"} func_onChange={setEmail} required/>
-                                    <InputBar type={"password"} placeholder={"Password *"} func_onChange={setPassword} required/>
-                                    <InputBar type={"password"} placeholder={"Confirm Password *"} func_onChange={setConfirm} required/>
                                 </div>
                             </td>
                             <td>
@@ -56,4 +52,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default Forgot

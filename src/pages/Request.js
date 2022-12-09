@@ -1,8 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Layout from '../context/Layout';
 
 function Request() {
   return (
-    <div>Request</div>
+    <Layout>
+      <data value='/request'></data>
+      <div>
+        test
+        <input type='button' value='Test'/>
+        <input type="text" />
+      </div>
+    </Layout>
   )
 }
 

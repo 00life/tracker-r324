@@ -1,34 +1,46 @@
+import { useState, useEffect } from "react";
 import auth from "./Firebase";
 import { 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
     onAuthStateChanged,
     signOut,
+    sendPasswordResetEmail,
 
 } from "firebase/auth";
 
-export function func_signup(email, password){
-    return createUserWithEmailAndPassword(auth, email, password)
+export async function func_signup(email, password){
+    try{await createUserWithEmailAndPassword(auth, email, password);
+    }catch(error){console.log('Functions_Auth - func_signup: '+error)}
 };
 
-export function func_signin(email, password){
-    return signInWithEmailAndPassword(auth, email, password)
+export async function func_signin(email, password){
+    try{return await signInWithEmailAndPassword(auth, email, password)
+    }catch(error){console.log('Functions_Auth - func_signin: '+ error)}
 };
 
-export function func_authstatus(callback){
-    return onAuthStateChanged(auth,callback)
+export async function func_logout(){
+    try{return await signOut(auth);
+    }catch(error){console.log('Functions_Auth - func_logout: '+error);}
 };
 
-export function func_logout(){
-    (async()=>{
-        try{await signOut(auth);
-        }catch(error){console.log(error)}
-    })();
+export function useAuthStatus(){
+    const [currentUser, setCurrentUser] = useState({});
+    useEffect(()=>{
+
+        const unsubscribe = onAuthStateChanged(auth,user=>{
+            setCurrentUser(user);
+        })
+
+        return unsubscribe
+    },[])
+    
+    return currentUser   
 };
 
-// export function reset(email){
-//     return sendPasswordResetEmail(auth, email);
-// };
+export function func_reset(email){
+    return sendPasswordResetEmail(auth, email);
+};
 
 // export function updateEmail(email){
 //     return currentUser.updateEmail(email);
