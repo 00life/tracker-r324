@@ -38,6 +38,7 @@ function Layout({children}) {
             reference.current.querySelector('#barcode').style.pointerEvents = (currentPage==='/barcode') ? 'none':'default';
             reference.current.querySelector('#request').style.pointerEvents = (currentPage==='/request') ? 'none':'default';
             reference.current.querySelector('#addperson').style.pointerEvents = (currentPage==='/addperson') ? 'none':'default';
+            reference.current.querySelector('#login').style.pointerEvents = (currentPage==='/login') ? 'none':'default';
         }catch{}
     },[currentPage, reference])
     
@@ -48,7 +49,7 @@ function Layout({children}) {
                 <tbody>
                     <tr>
                         <td style={{width:'100%', display:'flex', alignItems:'center'}}>
-                            <img src={require("./../images/logo.png")} alt="logo" height="50px" width="max-width" onClick={()=>handleSignin()}
+                            <img src={require("./../images/logo.png")} alt="logo" height="50px" width="max-width"
                                 style={{filter:'drop-shadow(2px 2px 0px black)'}}/>
                             <svg style={{filter:'drop-shadow(2px 2px 1px #8888)'}} id="indicator-online" width="24px" height="24px" viewBox="0 0 24 24" fill={!authstatus?"none":"palegreen"} >
                             <path opacity="0.15" d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="#001A72"/>
@@ -89,7 +90,7 @@ function Layout({children}) {
 
             <div>
                 
-                {!authstatus && <button onClick={()=>handleSignin()} style={{boxShadow:"1px 1px 4px 0px #8888", height:"40px", width:"40px"}}>
+                {!authstatus && <button id="login" onClick={()=>handleSignin()} style={{boxShadow:"1px 1px 4px 0px #8888", height:"40px", width:"40px"}}>
                     <svg style={{filter:'drop-shadow(2px 2px 1px #8888)'}} width="30px" height="30px" viewBox="0 0 256 256" id="Flat" fill={currentPage==='/login'?'blue':''}>
                     <path d="M144.48633,136.48438l-41.98926,42a12.0001,12.0001,0,0,1-16.97266-16.96875L107.03467,140H24a12,12,0,0,1,0-24h83.03467L85.52441,94.48438a12.0001,12.0001,0,0,1,16.97266-16.96875l41.98926,42A12.00093,12.00093,0,0,1,144.48633,136.48438ZM192,28H136a12,12,0,0,0,0,24h52V204H136a12,12,0,0,0,0,24h56a20.02229,20.02229,0,0,0,20-20V48A20.02229,20.02229,0,0,0,192,28Z"/>
                     </svg>
