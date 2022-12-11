@@ -33,18 +33,18 @@ function Layout({children}) {
     useEffect(()=>{
         try{
             setCurrentPage(reference?.current?.querySelectorAll('data')[0].value);
-            reference.current.querySelector('#profile').style.pointerEvents = (currentPage==='/profile') ? 'none':'default';
             reference.current.querySelector('#home').style.pointerEvents = (currentPage==='/') ? 'none':'default';
+            reference.current.querySelector('#profile').style.pointerEvents = (currentPage==='/profile') ? 'none':'default';
             reference.current.querySelector('#barcode').style.pointerEvents = (currentPage==='/barcode') ? 'none':'default';
             reference.current.querySelector('#request').style.pointerEvents = (currentPage==='/request') ? 'none':'default';
             reference.current.querySelector('#addperson').style.pointerEvents = (currentPage==='/addperson') ? 'none':'default';
             reference.current.querySelector('#login').style.pointerEvents = (currentPage==='/login') ? 'none':'default';
         }catch{}
     },[currentPage, reference])
-    
+
   return (
     <div ref={reference} style={{backgroundColor:'#ffffff'}}>
-        <nav style={{display:'flex', border:'2px solid grey', backgroundColor:'cornsilk', marginBottom:"3px", borderRadius:"5px", boxShadow:"1px 1px 4px 0px #8888"}}>
+        <nav style={{display:'flex', border:'2px solid grey', backgroundImage: 'linear-gradient(to bottom right, cornsilk, white)', marginBottom:"3px", borderRadius:"5px", boxShadow:"1px 1px 4px 0px #8888"}}>
             <table style={{width:'100%'}}>
                 <tbody>
                     <tr>
@@ -70,7 +70,7 @@ function Layout({children}) {
             </table>    
         </nav>
 
-        <nav style={{display:"flex",boxShadow:"1px 1px 4px 0px #8888", height:"50px", backgroundColor:'cornsilk', border:"2px solid grey", borderRadius:"5px", alignItems:"center", justifyContent:"space-between", padding:"8px"}}>
+        <nav style={{display:"flex",boxShadow:"1px 1px 4px 0px #8888", height:"50px", backgroundImage: 'linear-gradient(to bottom right, white, cornsilk)', border:"2px solid grey", borderRadius:"5px", alignItems:"center", justifyContent:"space-between", padding:"8px"}}>
             
             <button id="home" data-dest="/" onClick={(e)=>handleButtonEvent(e)} style={{boxShadow:"1px 1px 4px 0px #8888", height:"40px", width:"40px"}}>
                 <svg style={{filter:'drop-shadow(2px 2px 1px #8888)'}} fill={currentPage==='/'?'blue':''} height="24" width="24"><path d="M2.925 22.1V8.475L12 1.65l9.075 6.825V22.1H14.3v-8.3H9.7v8.3Z"/></svg>

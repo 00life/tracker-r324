@@ -28,6 +28,7 @@ function App(){
           <Route exact path="/forgot" element={<Forgot />}/>
           <Route exact path="/request" element={<RequireAuth><Request /></RequireAuth>}/>
           <Route exact path="/test" element={<Test />}/>
+          {/* <Route path="/" element={<Home />}/> */}
         </Routes>
       </BrowserRouter>
     </div>

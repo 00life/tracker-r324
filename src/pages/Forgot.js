@@ -19,7 +19,6 @@ function Forgot() {
     <Layout>
         <data value='/forgot'></data>
         <div style={{display:'flex', justifyContent:'center', backgroundColor:'#ffffff', padding:'20px 0px', margin:'10px 20px', boxShadow:'1px 1px 4px 0px #8888', borderRadius:"5px",caretColor: "rgba(0,0,0,0)"}}>
-            {/* <img src={require("./../images/Railway_Statement1.png")} alt='' height="20px" width="max-width" /> */}
             <center><h3>Your password will be emailed</h3></center>
         </div>
         
