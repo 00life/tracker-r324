@@ -22,12 +22,19 @@ function Layout({children}) {
         navigate(sessionStorage.getItem('lastpage'))
     };
 
-    const handleButtonEvent = (e)=>{
-        let current = reference?.current?.querySelectorAll('data')[0].value;
-        let last = sessionStorage.getItem('lastpage');
-        if(last!==current){sessionStorage.setItem('lastpage',current)};
-        let destination = e.currentTarget.dataset.dest;
-        navigate(destination);
+    const handleButtonEvent = e =>{
+        try{
+            let current = reference.current.querySelectorAll('data')[0].value
+            let last = sessionStorage.getItem('lastpage');
+            if(last!==current){sessionStorage.setItem('lastpage',current)};
+            let destination = e.currentTarget.dataset.dest;
+            navigate(destination);
+        }catch(err){console.log('handleButtonEvent: '+ err)} 
+    };
+
+    const handleLogoTest=()=>{
+        // localStorage.clear();
+        // func_snackbar(reference, 'localStorage.clear()')
     };
 
     useEffect(()=>{
@@ -39,8 +46,9 @@ function Layout({children}) {
             reference.current.querySelector('#request').style.pointerEvents = (currentPage==='/request') ? 'none':'default';
             reference.current.querySelector('#addperson').style.pointerEvents = (currentPage==='/addperson') ? 'none':'default';
             reference.current.querySelector('#login').style.pointerEvents = (currentPage==='/login') ? 'none':'default';
-        }catch{}
-    },[currentPage, reference])
+        }catch{};
+        return ()=>{}
+    },[currentPage])
 
   return (
     <div ref={reference} style={{backgroundColor:'#ffffff'}}>
@@ -49,7 +57,7 @@ function Layout({children}) {
                 <tbody>
                     <tr>
                         <td style={{width:'100%', display:'flex', alignItems:'center'}}>
-                            <img src={require("./../images/logo.png")} alt="logo" height="50px" width="max-width"
+                            <img src={require("./../images/logo.png")} alt="logo" height="50px" width="max-width" onClick={()=>handleLogoTest()}
                                 style={{filter:'drop-shadow(2px 2px 0px black)'}}/>
                             <svg style={{filter:'drop-shadow(2px 2px 1px #8888)'}} id="indicator-online" width="24px" height="24px" viewBox="0 0 24 24" fill={!authstatus?"none":"palegreen"} >
                             <path opacity="0.15" d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" fill="#001A72"/>

@@ -13,6 +13,7 @@ function Home() {
         <input type='button' value='Test'/>
         <input type="text" />
         <Link to='/request'>REQUEST</Link>
+        <input type="file" />
       </div>
     </Layout>
   )

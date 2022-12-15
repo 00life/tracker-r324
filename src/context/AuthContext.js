@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { func_signup, func_signin, func_logout, useAuthStatus } from "./Functions_Auth";
 import { func_snackbar } from "./Functions_1";
 
@@ -8,6 +8,7 @@ export function useAuth(){return useContext(AuthContext)};
 export function AuthProvider({children}){
   const reference = useRef();
   const authstatus = useAuthStatus();
+  const [persons, setPersons] = useState([]);
   
   return (
     <AuthContext.Provider value={{
@@ -17,6 +18,8 @@ export function AuthProvider({children}){
       func_snackbar,
       reference,
       authstatus,
+      persons,
+      setPersons
     }}>
       
       {children}

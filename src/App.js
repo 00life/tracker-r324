@@ -8,6 +8,8 @@ import Request from './pages/Request.js';
 import Barcode from './pages/Barcode.js';
 import Profile from './pages/Profile.js';
 import Addperson from './pages/Addperson.js';
+import Participants from './pages/Participants.js';
+import Addlist from './pages/Addlist.js';
 import Test from './pages/Test.js';
 
 function App(){
@@ -26,6 +28,8 @@ function App(){
           <Route exact path="/signup" element={<Signup />}/>
           <Route exact path="/addperson" element={<Addperson />}/>
           <Route exact path="/forgot" element={<Forgot />}/>
+          <Route exact path="/participants" element={<Participants />}/>
+          <Route exact path="/addlist" element={<Addlist />}/>
           <Route exact path="/request" element={<RequireAuth><Request /></RequireAuth>}/>
           <Route exact path="/test" element={<Test />}/>
           {/* <Route path="/" element={<Home />}/> */}

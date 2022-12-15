@@ -23,13 +23,13 @@ export function func_savedata(data, name){
   URL.revokeObjectURL(anchor.href);
 };
 
-export function func_loaddata(element_get, putLocation){
-  var file = element_get.files[0];
+export function func_loaddata(elem, putLocation){
+  var file = elem.files[0];
   var reader = new FileReader();
 
   reader.onloadend = function(){
     var load = JSON.parse(reader.result)[0];
-    putLocation = load;
+    putLocation(load);
   };
   reader.readAsText(file);
 };
@@ -41,6 +41,31 @@ export function convertFrom24To12Format(time24){
     const hours = +sHours % 12 || 12;
     return `${hours}:${minutes} ${period}`;
   }catch{};
+};
+
+export function cleanArray(array){
+  try{
+    let cleanArray = array.map(item=>item.trim());
+    let filterArray = cleanArray.filter(item=>item!=='');
+    let rmSpacesArray = filterArray
+        .map(item=>item.split(' ')
+          .map(item=>item.trim())
+          .filter(item=>item!=='')
+          .join(' ')
+        );
+    return rmSpacesArray
+  }catch(err){console.log('cleanArray:'+err)}
+};
+
+export function stringBase64File(elem, putLocation){
+  try{
+    let file = elem.files[0];
+    let reader = new FileReader();
+    reader.onloadend = function() {
+      putLocation(reader.result)
+    }
+    reader?.readAsDataURL(file);
+  }catch(err){console.log('stringBase64File:'+err)}
 };
 
 
